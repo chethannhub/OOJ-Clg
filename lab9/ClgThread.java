@@ -1,43 +1,30 @@
-class NameThread extends Thread {
-public void run() {
-try {
-for(int i=0; i<5; i++) {
-System.out.println("BMS college of engineering");
-Thread.sleep(10000);
-}
-}
-catch (InterruptedException e) {
-System.out.println("Interrupted");
-}
-}
-}
+class NewThread extends Thread {
+    String message;
+    int interval;
 
-class DeptThread extends Thread {
-public void run() {
+    NewThread(String message, int interval) {
+        this.message = message;
+        this.interval = interval;
+    }
 
-try {
-for(int i=0; i<5; i++) {
-System.out.println("CSE");
-Thread.sleep(2000);
+    public void run() {
+        try {
+            for (int i = 0; i < 3; i++) {
+                System.out.println(message);
+                Thread.sleep(interval);
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted");
+        }
+    }
 }
-}
-catch (InterruptedException e) {
-System.out.println("Interrupted");
-}
-}
-}
-
-
 
 public class ClgThread {
-public static void main(String args[]) {
-NameThread n1 = new NameThread();
-DeptThread d1 = new DeptThread();
+    public static void main(String args[]) {
+        NewThread n1 = new NewThread("BMSCE", 1000);
+        NewThread n2 = new NewThread("CSE", 2000);
 
-n1.start();
-d1.start();
-
-System.out.println(n1.isAlive());
-System.out.println(d1.isAlive());
-}
+        n1.start();
+        n2.start();
+    }
 }
